@@ -1,0 +1,39 @@
+
+<HTML>
+	<HEAD>
+		<LINK href="styles/settings.css" rel="stylesheet" type="text/css">
+		<SCRIPT language="javascript" src="scripts/settings.js"></SCRIPT>
+	</HEAD>
+	
+	<BODY onload="loadSettings()">
+		
+		<table>	
+		<tr><td><label for="server">Server:</label></td><td><input type="text" name="serverURL" id="serverURL"/></td></tr>
+		<tr><td></td><td><input type="button" name="retrieveProjects" id="retrieveProjects" value="Get Projects" style="width:auto;" onclick="retrieveProjects();">
+		<tr><td><label for="projects">Projects:</label></td>
+		<td><SELECT disabled="true" name="projectsFromHudson" id="projectsFromHudson" /></SELECT></td></tr>
+		<tr><td></td><td><input type="button" name="addProject" id="addProject" value="Add Project" style="width:auto;" onclick="addProject();"></td></tr>
+		<tr><td colspan="2" style="height:15px;"></td></tr>
+		<tr><td><label for="projects">Projects:</label></td>
+		<td><SELECT name="projectsToDelete" id="projectsToDelete"/></SELECT></td></tr>
+		<tr><td></td><td><input type="button" name="deleteProject" id="deleteProject" value="Delete Project" style="width:auto;" onclick="deleteExistingProject();"></td></tr>
+	<span id="errorMessage"></span>
+		</span>
+		</td></tr>
+		
+		<tr><td colspan="2" style="height:15px;"></td></tr>
+		<tr><td><label for="projectRefresh">Refresh:</label></td>
+		<td><SELECT name="projectRefresh" id="projectRefresh">
+				<OPTION value="60000">every minute</OPTION>
+				<OPTION value="600000">every 10 minutes</OPTION>
+				<OPTION value="-1" SELECTED>only next time the gadget is started</OPTION>
+		</SELECT></td></tr>		
+		<tr><td colspan="2" style="height:15px;"></td></tr>
+        <tr><td><STRONG>Author:</STRONG></td><td>Jean-Marc Taillant</td></tr>
+		<tr><td><STRONG>Email:</STRONG></td><td><a href="mailto:jean-marc.taillant@gmail.com">jean-marc.taillant@alcatel-lucent.com</a></td></tr>
+
+		</table>		
+		
+	</BODY>
+</HTML>
+

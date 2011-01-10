@@ -1,0 +1,44 @@
+<!-------------------------------------------------
+	Filename:	Gadget.html
+	Author:		Cristian Patrasciuc
+	Email:		cristian.patrasciuc@gmail.com
+	Date:		29-June-2007
+--------------------------------------------------->
+
+<HTML>
+	<HEAD>
+		<TITLE>Hudson reader</TITLE>
+		<LINK href="styles/gadget.css" rel="stylesheet" type="text/css">
+		<LINK href="themes/default/style.css" rel="stylesheet" type="text/css">
+		<SCRIPT language="javascript" src="scripts/gadget.js"></SCRIPT>
+	
+	
+	</HEAD>
+	
+	<BODY onload=" resizeGadget(); getProjects();">
+	
+		<DIV id="gadgetContent" >
+			
+			<DIV id="projects" style="margin-top: 30px;">
+		
+			<DIV align="left" class="projectItem" id="0" style="float: left;"></DIV>
+			
+			<DIV align="left" class="projectItem" id="1" style="float: left;"></DIV>
+			
+			<DIV align="left" class="projectItem" id="2" style="float: left;"></DIV>
+			
+			<DIV align="left" class="projectItem" id="3" style="float: left;"></DIV>
+		
+		</div>
+			<DIV id="navigation">
+				<a href="javascript:void(0);" id="leftarrow" onclick="if (projects == undefined)return;if ((currentPage-1) >0 )currentPage = currentPage-1 ; showProjects(projects);"></a>
+				<div id="position"></div>
+				<a href="javascript:void(0);" id="rightarrow" onclick="if (projects == undefined)return;if ((currentPage*4) >= projects.length )return;currentPage = (currentPage + 1); showProjects(projects);"></a>
+			</DIV>
+		</DIV>
+	
+		<DIV name="message" id="message">
+		<p name="messageText" id="messageText"></p>
+		</DIV> 
+	</BODY>
+</HTML>
