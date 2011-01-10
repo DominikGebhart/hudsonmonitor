@@ -1,0 +1,64 @@
+/**********************************************
+ *	Filename:	style.css
+ *	Author:		Cristian Patrasciuc
+ *	Email:		cristian.patrasciuc@gmail.com
+ *	Date:		08-July-2007
+ **********************************************/
+
+body {
+	color: #B4B4B4;
+	background-image: url('background.png');
+}
+
+
+#projectTitle a { color: #FF9900; }
+
+.projectItemDocked a, 
+.projectItemDocked a:visited, 
+.projectItemDocked a:link,
+.projectItemUndocked a,
+.projectItemUndocked a:visited,
+.projectItemUndocked a:link
+{ color: #204a87; }
+
+#leftarrow { background-image: url('leftarrow.png'); }
+#rightarrow { background-image: url('rightarrow.png'); }
+
+#message { background-image: url('message.png'); }
+#message p { color: #FF9900; }
+
+.centeredImage
+    {
+    align:left;
+		text-align:center;
+		display:block;
+		horizontal-align:left;               
+    }
+/* ============================ health report hover ========================== */
+
+.healthReport a {
+    text-decoration: none;
+}
+
+.healthReport div.healthReportDetails {
+    display: none;
+}
+
+.healthReport:hover, .healthReport.hover { /* fix IE6 bug with :hover */
+    background: transparent;
+}
+
+.healthReport:hover div.healthReportDetails, .healthReport.hover div.healthReportDetails {
+    display: block;
+    position: absolute;
+    background-color: #ffe;
+    border: 1px solid #bbb;
+    margin-left: 32px; /* move it across a bit */
+    z-index: 26;
+}
+
+.healthReport div.healthReportDetails table {
+    border-collapse: collapse;
+    width: 450px; /* fix IE bug with width */
+}
+
