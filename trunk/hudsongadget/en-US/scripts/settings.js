@@ -8,8 +8,15 @@ function settingsClosing(event)
     if (event.closeAction == event.Action.commit)
     {
         System.Gadget.Settings.write( "refresh", projectRefresh.options[projectRefresh.selectedIndex].value );
+     //    savesettingstofile();
          event.cancel = false;
+         
     }
+}
+
+
+function savesettingstofile() {
+
 }
 
 var downloadedProjects;
