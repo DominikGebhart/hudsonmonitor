@@ -2,7 +2,7 @@
 <gadget>
     <name>Hudson Monitor</name>
     <namespace>Taillant.HudsonMonitorGadget</namespace>
-    <version>1.0.0.0</version>
+    <version>1.0.0.1</version>
     <author name="Jean-Marc Taillant">
         <info text="See Settings for email"/>
         <logo height="160" width="160" src="gadgeticon.png"  />
