@@ -113,23 +113,18 @@ function getProjects()
 	currentPage = 1;
 	var cur = 0;
 	for ( var cur = 0; cur < n;cur++){ 
-	
-	
-	var projectURL = System.Gadget.Settings.read("projectURL"+cur); 
-	//var projectURL = "http://bshudson.fr.alcatel-lucent.com/hudson/view/Enterprise%20SDK/job/Enterprise%20SDK%20-%20802%20-%20Dev/";
-	GetProject(projectURL, cur);
-}
-
- 
-
-
-	
+		var projectURL = System.Gadget.Settings.read("projectURL"+cur); 
+		var useAuth = System.Gadget.Settings.read("projectUseAuthentification"+cur); 
+		var userName = System.Gadget.Settings.read("projectUserName"+cur); 
+		var passwordInput = System.Gadget.Settings.read("projectPassword"+cur); 
+		GetProject(projectURL,useAuth,userName,passwordInput, cur);
+	}
 	var refreshTime = System.Gadget.Settings.read('refresh');
 	if ( refreshTime > 0 ) setTimeout( "getProjects();", refreshTime );
 	return;
 }
 
-function GetProject(projectURL,cur){
+function GetProject(projectURL, useAuth, userName, passwordInput,cur){
 	
 	projectURL = projectURL+"api/json";
 
@@ -143,10 +138,19 @@ else
    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 
   }
-
-  //showMessage( projectURL);
+   var auth = null;
     xmlhttp.open("GET", projectURL,true); 
-   
+    if (useAuth != null){
+   if (useAuth == true) {
+					auth = window.btoa((userName || '') + ':' + (passwordInput || ''));
+				} else {
+					auth = null;
+				}
+				if ( auth != null) {
+						xhr.setRequestHeader('Authorization', 'Basic ' + auth);
+					}
+				}
+					
     xmlhttp.onreadystatechange= function() {
   if (xmlhttp.readyState==4) {
   if (xmlhttp.status==200){
@@ -275,3 +279,4 @@ var flyoutIndex = 0;
 var projects;
 var shell = new ActiveXObject("WScript.Shell");
 
+var auth;
