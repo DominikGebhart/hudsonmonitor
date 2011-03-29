@@ -18,7 +18,10 @@ label, table, td, tr, strong {
 
 hr { margin-top: 30px; }
 
-input, select {	width: 200px; }
+input, select {
+	width: auto;
+	text-align: left;
+}
 
 #preview {
 	border: solid 1px;

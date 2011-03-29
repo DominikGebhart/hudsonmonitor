@@ -1,6 +1,9 @@
 
+
 /* Set the event handlers */
 System.Gadget.onSettingsClosing = settingsClosing;
+
+
 
 /* Saves the settings when Settings dialog is closed */
 function settingsClosing(event)
@@ -8,7 +11,6 @@ function settingsClosing(event)
     if (event.closeAction == event.Action.commit)
     {
         System.Gadget.Settings.write( "refresh", projectRefresh.options[projectRefresh.selectedIndex].value );
-     //    savesettingstofile();
          event.cancel = false;
          
     }
@@ -24,6 +26,7 @@ var downloadedProjects;
 /* Loads the existing settings when the Settings dialog is shown */
 function loadSettings() 
 {
+	markDirty();
 	buildProjectsToDelete();
 	var refresh = System.Gadget.Settings.read("refresh");
 
@@ -38,7 +41,6 @@ function loadSettings()
 			projectRefresh[4].selected = "1";
 	}	
 	
-
 	buildProjectList();
 	var current = System.Gadget.Settings.read("currentProject");
 	if ( current == "" ) current = 0;
@@ -83,8 +85,7 @@ else
   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   
   }
-  //bshudson.fr.alcatel-lucent.com/hudson
-  //showMessage( projectURL);
+
    xmlhttp.open("GET", serverURL.value+"/api/json",true);   
    
   
@@ -119,6 +120,18 @@ function buildProjectsList(hudsonjsonobject){
 		projectsFromHudson.disabled=false;
 	
 }
+
+function markDirty() {
+				
+				if (auth.checked == true) {
+					username.disabled = false;
+					password.disabled = false;
+				} else {
+					username.disabled = true;
+					password.disabled = true;
+				}			
+			}
+
 /* Add a new project */
 function addProject()
 {
@@ -147,9 +160,7 @@ else
   {// code for IE6, IE5
   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   
-  }
-  //bshudson.fr.alcatel-lucent.com/hudson
-  //showMessage( projectURL);
+  }  
    xmlhttp.open("GET", serverURL.value+"/job/"+projectName+"/api/json",true);   
    
   
@@ -167,6 +178,14 @@ else
 	System.Gadget.Settings.write( "projectName"+n, projectName );	
 	System.Gadget.Settings.write( "projectServer"+n, serverURL.value );	
 	System.Gadget.Settings.write( "projectURL"+n, projectJSON.url );	
+	
+	/*++ Add Authentification ++*/
+
+	System.Gadget.Settings.write( "projectUseAuthentification"+n,  auth.checked);
+	System.Gadget.Settings.write("projectUserName"+n,  username.value);
+	System.Gadget.Settings.write("projectPassword"+n,  password.value); 
+	/*-- Add Authentification --*/
+	
   
 	n++;
 	System.Gadget.Settings.write("noProjects",n);
@@ -211,9 +230,18 @@ function deleteExistingProject()
 		var URL = System.Gadget.Settings.read("projectURL"+(i+1));
 		var name = System.Gadget.Settings.read("projectName"+(i+1));
 		var server = System.Gadget.Settings.read( "projectServer"+(i+1));	
+		var useAuthentification = System.Gadget.Settings.read( "projectUseAuthentification"+(i+1));	
+		var username = System.Gadget.Settings.read( "projectUserName"+(i+1));	
+		var passwordInput = System.Gadget.Settings.read( "projectPassword"+(i+1));	
+		debugger;
 		System.Gadget.Settings.write("projectURL"+i,  URL);
 		System.Gadget.Settings.write("projectName"+i,  name);
 		System.Gadget.Settings.write("projectServer"+i, server);
+			/*++ Add Authentification ++*/	
+		System.Gadget.Settings.write("projectUseAuthentification"+i, useAuthentification);
+		System.Gadget.Settings.write("projectUserName"+i, username);
+		System.Gadget.Settings.write("projectPassword"+i, passwordInput);
+			/*-- Add Authentification --*/
 	}
 	
 	if ( n > 0 ) n--; else n = 0;
